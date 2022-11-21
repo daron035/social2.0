@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "social2-0"
+version = "0.1.0"
+description = ""
+authors = ["daron035 <kamil249@mail.ru>"]
+readme = "README.md"
+packages = [{include = "social2"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+djangorestframework = "^3.14.0"
+pillow = "^9.3.0"
+djoser = "^2.1.0"
+django-cors-headers = "^3.13.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
