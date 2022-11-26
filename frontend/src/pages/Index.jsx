@@ -6,12 +6,9 @@ import RightBar from "../components/RightBar";
 import SideBar from "../components/SideBar";
 
 function Index() {
-  const [view, setView] = useState(true);
-  // setVisible = { setView };
-
   return (
     <div className="min-h-screen ">
-      <ViewPage visible={view} setVisible={setView} />
+      <ViewPage />
       <div className="container mx-auto max-w-[1500px]">
         <div className="flex">
           <SideBar />

@@ -6,10 +6,11 @@ import rimg from "../../static/twitter-icon-svg.jpg";
 
 import Avatar from "../Avatar";
 
-const ViewPage = ({ children, visible, setVisible }) => {
+const ViewPage = () => {
+  const [view, setView] = useState(true);
   var display = "hidden";
 
-  if (visible) {
+  if (view) {
     display = "";
   } else {
     display = "hidden";
@@ -20,7 +21,7 @@ const ViewPage = ({ children, visible, setVisible }) => {
     <div className={`flex justify-end ${display} fixed ${styles.viewPage}`}>
       {/* <div className="flex justify-end display"> */}
       <div className="w-full bg-red-700 bg-opacity-50 text-white">
-        <div onClick={() => setVisible(false)}>exit</div>
+        <div onClick={() => setView(false)}>exit</div>
         <img src={rimg} className="w-12 h-12" />
       </div>
       <div className="w-[350px] px-4 pt-3 mb-1">

@@ -14,6 +14,7 @@ import {
 } from "react-icons/hi";
 import TweetButton from "../UI/button";
 import AccountView from "./AccountView";
+import ViewLogout from "./Modal/ViewLogout";
 
 const SideBar = () => {
   return (
