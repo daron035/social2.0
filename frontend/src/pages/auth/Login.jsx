@@ -52,6 +52,7 @@ const Login = ({ login, isAuthenticated }) => {
                 className="mt-1 block w-full h-[34px] items-center px-3 text-black rounded-md"
                 placeholder=""
                 name="password"
+                value={password}
                 onChange={(e) => onChange(e)}
                 minLength="6"
                 required

@@ -6,15 +6,24 @@ import {
   USER_LOADED_FAIL,
   AUTHENTICATED_SUCCESS,
   AUTHENTICATED_FAIL,
+  PASSWORD_RESET_SUCCESS,
+  PASSWORD_RESET_FAIL,
+  PASSWORD_RESET_CONFIRM_SUCCESS,
+  PASSWORD_RESET_CONFIRM_FAIL,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
+  ACTIVATION_SUCCESS,
+  ACTIVATION_FAIL,
   LOGOUT,
 } from "./types";
+
 
 export const checkAuthenticated = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
     };
 
@@ -22,7 +31,8 @@ export const checkAuthenticated = () => async (dispatch) => {
 
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/jwt/verify/`,
+        `/api/auth/jwt/verify/`,
+        // `${process.env.REACT_APP_API_URL}/api/auth/jwt/verify/`,
         body,
         config
       );
@@ -62,7 +72,8 @@ export const load_user = () => async (dispatch) => {
 
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/auth/users/me/`,
+        `/api/auth/users/me/`,
+        // `${process.env.REACT_APP_API_URL}/api/auth/users/me/`,
         config
       );
 
@@ -93,11 +104,11 @@ export const login = (email, password) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `${process.env.REACT_APP_API_URL}/api/auth/jwt/create/`,
+      `/api/auth/jwt/create/`,
+      // `${process.env.REACT_APP_API_URL}/api/auth/jwt/create/`, # proxy
       body,
       config
     );
-    console.log(res.data.access)
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -111,6 +122,114 @@ export const login = (email, password) => async (dispatch) => {
     });
   }
 };
+
+export const signup = (email, username, password, re_password) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ email, username, password, re_password });
+
+  try {
+    const res = await axios.post(
+      `/api/auth/users/`,
+      // `${process.env.REACT_APP_API_URL}/api/auth/users/`,
+      body,
+      config
+    );
+
+    dispatch({
+      type: SIGNUP_SUCCESS,
+      // payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: SIGNUP_FAIL,
+    });
+  }
+};
+
+export const verify = (uid, token) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ uid, token });
+
+  try {
+    await axios.post(
+      `/api/auth/users/activation/`,
+      // `${process.env.REACT_APP_API_URL}/api/auth/users/activation/`,
+      body,
+      config
+    );
+    dispatch({
+      type: ACTIVATION_SUCCESS,
+    });
+  } catch (err) {
+    dispatch({
+      type: ACTIVATION_FAIL,
+    });
+  }
+};
+
+export const reset_password = (email) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify({ email });
+
+  try {
+    await axios.post(
+      `/api/auth/users/reset_password/`,
+      // `${process.env.REACT_APP_API_URL}/api/auth/users/reset_password/`,
+      body,
+      config
+    );
+
+    dispatch({
+      type: PASSWORD_RESET_SUCCESS,
+    });
+  } catch (err) {
+    dispatch({
+      type: PASSWORD_RESET_FAIL,
+    });
+  }
+};
+
+export const reset_password_confirm =
+  (uid, token, new_password, re_new_password) => async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ uid, token, new_password, re_new_password });
+
+    try {
+      await axios.post(
+        `/api/auth/users/reset_password_confirm/`,
+        // `${process.env.REACT_APP_API_URL}/api/auth/users/reset_password_confirm/`,
+        body,
+        config
+      );
+
+      dispatch({
+        type: PASSWORD_RESET_CONFIRM_SUCCESS,
+      });
+    } catch (err) {
+      dispatch({
+        type: PASSWORD_RESET_CONFIRM_FAIL,
+      });
+    }
+  };
 
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT });
