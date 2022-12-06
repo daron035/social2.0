@@ -12,8 +12,15 @@ djangorestframework = "^3.14.0"
 pillow = "^9.3.0"
 djoser = "^2.1.0"
 django-cors-headers = "^3.13.0"
+django-stubs = "^1.13.0"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "src.settings"

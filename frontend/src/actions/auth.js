@@ -17,7 +17,6 @@ import {
   LOGOUT,
 } from "./types";
 
-
 export const checkAuthenticated = () => async (dispatch) => {
   if (localStorage.getItem("access")) {
     const config = {
@@ -123,33 +122,34 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
-export const signup = (email, username, password, re_password) => async (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const signup =
+  (email, username, password, re_password) => async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ email, username, password, re_password });
+
+    try {
+      await axios.post(
+        `/api/auth/users/`,
+        // `${process.env.REACT_APP_API_URL}/api/auth/users/`,
+        body,
+        config
+      );
+
+      dispatch({
+        type: SIGNUP_SUCCESS,
+        // payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: SIGNUP_FAIL,
+      });
+    }
   };
-
-  const body = JSON.stringify({ email, username, password, re_password });
-
-  try {
-    const res = await axios.post(
-      `/api/auth/users/`,
-      // `${process.env.REACT_APP_API_URL}/api/auth/users/`,
-      body,
-      config
-    );
-
-    dispatch({
-      type: SIGNUP_SUCCESS,
-      // payload: res.data
-    });
-  } catch (err) {
-    dispatch({
-      type: SIGNUP_FAIL,
-    });
-  }
-};
 
 export const verify = (uid, token) => async (dispatch) => {
   const config = {

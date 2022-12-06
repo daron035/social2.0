@@ -1,54 +1,80 @@
-import React, {useState} from "react";
-import {
-  HiOutlinePhotograph,
-  HiOutlineHeart,
-  HiOutlineUpload,
-} from "react-icons/hi";
+import React, { useEffect, useState } from "react";
+import { HiOutlineHeart, HiOutlineUpload } from "react-icons/hi";
 import { BsChat } from "react-icons/bs";
-
 import { BiRepost } from "react-icons/bi";
 import logo from "../static/twitter-icon-svg.jpg";
-import lg from "../static/1.jpg";
-import lg2 from "../static/2.jpg";
+import axios from "axios";
+import ViewPage from "./Modal/ViewPage";
+import TweetPostIcons from "./TweetPostIcons";
 
-const TweetPost = ({ image, children, visible, setVisible }) => {
-  const [view, setView] = useState(false);
-  setVisible={setView};
+const TweetPost = ({ idPost, body }) => {
+  const [viewModal, setModal] = useState(false);
+
+  function callbackCloseModal() {
+    setModal(false);
+  }
+
+  let [images, setImages] = useState([]);
+
+  useEffect(() => {
+    getImages(idPost);
+  }, []);
+
+  let getImages = async (pk) => {
+    // if (!pk) {
+    //   return null;
+    // }
+    await axios
+      .get(`http://127.0.0.1:8000/api/post-images/${pk}`)
+      .then((response) => {
+        const image = response.data;
+        setImages(image);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  let id;
+  function smap(item) {
+    setModal(true);
+    id = item.id;
+  }
 
   return (
-    <div className="border-b border-gray-700">
+    <div className="relative border-b border-gray-700">
+      <ViewPage
+        viewM={viewModal}
+        id={id}
+        i={images}
+        callbackCloseModal={callbackCloseModal}
+      />
       <div className="flex min-h-[300px] mx-[16px] mt-[12px] pb-3">
         <div className="w-[48px] pr-[12px] ">
           <img src={logo} alt=""></img>
         </div>
         <div className="flex-col w-full">
           <div className="flex ">
-            <div className="min-h-[20px]">Nickname</div>
+            <div className="min-h-[20px]">{body}</div>
             <div className="ml-1">@nickname</div>
             <div className="mx-1"> & </div>
-            <div className="my-auto text-sm text-gray-400">{14} hours</div>
+            <div className="my-auto text-sm text-gray-400">14 hours</div>
           </div>
           <div>Description</div>
-          <div className="my-3">
-            <img src={image} alt="" className="rounded-2xl"></img>
+          <div className="my-3 grid grid-cols-2">
+            {images.map((item) => (
+              <img
+                src={item.image}
+                alt=""
+                className="rounded-2xl"
+                onClick={() => smap(item)}
+              ></img>
+            ))}
           </div>
+
           <div className="flex justify-between items-center w-[425px] h-[20px]">
-            <div className="flex items-center">
-              <BsChat />
-              <div className="items-center px-3">23</div>
-            </div>
-            <div className="flex items-center">
-              <BiRepost size={22} />
-              <div className="items-center px-3">23</div>
-            </div>
-            <div className="flex items-center">
-              <HiOutlineHeart size={20} />
-              <div className="items-center px-3">23</div>
-            </div>
-            <div className="flex items-center">
-              <HiOutlineUpload size={20} />
-              <div className="items-center px-3">23</div>
-            </div>
+            <TweetPostIcons icon=<BsChat /> />
+            <TweetPostIcons icon=<BiRepost size={22} /> />
+            <TweetPostIcons icon=<HiOutlineHeart size={20} /> />
+            <TweetPostIcons icon=<HiOutlineUpload size={20} /> />
           </div>
         </div>
       </div>

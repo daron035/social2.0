@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { logout } from "../../actions/auth";
 
 const ViewLogout = ({ active, logout }) => {
-  var display;
   return (
     <div
       className={`${

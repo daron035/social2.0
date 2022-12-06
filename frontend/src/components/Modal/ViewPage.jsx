@@ -1,28 +1,35 @@
-import React, { useState } from "react";
-import img from "../../static/twitter-icon-svg.jpg";
+import SimpleImageSlider from "react-simple-image-slider";
 import { HiEllipsisHorizontal } from "react-icons/hi2";
 import styles from "../../static/css/App.module.css";
-import rimg from "../../static/twitter-icon-svg.jpg";
 
 import Avatar from "../Avatar";
+import ViewPagePosts from "./ViewPagePosts";
 
-const ViewPage = () => {
-  const [view, setView] = useState(true);
-  var display = "hidden";
-
-  if (view) {
-    display = "";
+const ViewPage = ({ viewM, callbackCloseModal, i }) => {
+  if (viewM) {
+    var display = "";
   } else {
-    display = "hidden";
+    var display = "hidden";
   }
 
+  let images = [];
+  i.map((it) => images.push({ url: it.image }));
 
   return (
-    <div className={`flex justify-end ${display} fixed ${styles.viewPage}`}>
-      {/* <div className="flex justify-end display"> */}
+    <div
+      className={`-left-0 -top-0 z-10 ${display} fixed flex ${styles.viewPage}`}
+    >
       <div className="w-full bg-red-700 bg-opacity-50 text-white">
-        <div onClick={() => setView(false)}>exit</div>
-        <img src={rimg} className="w-12 h-12" />
+        <div onClick={() => callbackCloseModal()}>exit</div>
+        <div className="max-w-full h-full flex items-center">
+          <SimpleImageSlider
+            height="80%"
+            width="80%"
+            images={images}
+            showBullets={true}
+            showNavs={true}
+          />
+        </div>
       </div>
       <div className="w-[350px] px-4 pt-3 mb-1">
         <div className="flex w-full ">
@@ -35,7 +42,12 @@ const ViewPage = () => {
             <HiEllipsisHorizontal className="w-7 h-7 on-hover-sm" />
           </div>
         </div>
-        <div>text</div>
+        <div className="divide-y">
+          <ViewPagePosts />
+          <ViewPagePosts />
+          <ViewPagePosts />
+          <ViewPagePosts />
+        </div>
       </div>
     </div>
   );
