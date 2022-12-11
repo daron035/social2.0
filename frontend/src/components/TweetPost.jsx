@@ -10,7 +10,8 @@ import TweetPostIcons from "./TweetPostIcons";
 const TweetPost = ({ idPost, body }) => {
   const [viewModal, setModal] = useState(false);
 
-  function callbackCloseModal() {
+  function callbackCloseModal(a) {
+    console.log(a)
     setModal(false);
   }
 
@@ -21,11 +22,10 @@ const TweetPost = ({ idPost, body }) => {
   }, []);
 
   let getImages = async (pk) => {
-    // if (!pk) {
-    //   return null;
-    // }
     await axios
-      .get(`http://127.0.0.1:8000/api/post-images/${pk}`)
+      // .get(`http://127.0.0.1:8000/api/post-images/${pk}`)
+      // .get(`/api/post-images/${pk}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/post-images/${pk}`)
       .then((response) => {
         const image = response.data;
         setImages(image);
@@ -42,7 +42,7 @@ const TweetPost = ({ idPost, body }) => {
   return (
     <div className="relative border-b border-gray-700">
       <ViewPage
-        viewM={viewModal}
+        viewModal={viewModal}
         id={id}
         i={images}
         callbackCloseModal={callbackCloseModal}

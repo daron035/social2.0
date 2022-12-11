@@ -5,8 +5,8 @@ import styles from "../../static/css/App.module.css";
 import Avatar from "../Avatar";
 import ViewPagePosts from "./ViewPagePosts";
 
-const ViewPage = ({ viewM, callbackCloseModal, i }) => {
-  if (viewM) {
+const ViewPage = ({ viewModal, callbackCloseModal, i }) => {
+  if (viewModal) {
     var display = "";
   } else {
     var display = "hidden";
@@ -20,7 +20,7 @@ const ViewPage = ({ viewM, callbackCloseModal, i }) => {
       className={`-left-0 -top-0 z-10 ${display} fixed flex ${styles.viewPage}`}
     >
       <div className="w-full bg-red-700 bg-opacity-50 text-white">
-        <div onClick={() => callbackCloseModal()}>exit</div>
+        <div onClick={() => callbackCloseModal('test')}>exit</div>
         <div className="max-w-full h-full flex items-center">
           <SimpleImageSlider
             height="80%"

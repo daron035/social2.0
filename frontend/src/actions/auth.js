@@ -30,8 +30,8 @@ export const checkAuthenticated = () => async (dispatch) => {
 
     try {
       const res = await axios.post(
-        `/api/auth/jwt/verify/`,
-        // `${process.env.REACT_APP_API_URL}/api/auth/jwt/verify/`,
+        // `/api/auth/jwt/verify/`,
+        `${process.env.REACT_APP_API_URL}/api/auth/jwt/verify/`,
         body,
         config
       );
@@ -71,8 +71,8 @@ export const load_user = () => async (dispatch) => {
 
     try {
       const res = await axios.get(
-        `/api/auth/users/me/`,
-        // `${process.env.REACT_APP_API_URL}/api/auth/users/me/`,
+        // `/api/auth/users/me/`,
+        `${process.env.REACT_APP_API_URL}/api/auth/users/me/`,
         config
       );
 
@@ -103,8 +103,9 @@ export const login = (email, password) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      `/api/auth/jwt/create/`,
+      // `/api/auth/jwt/create/`,
       // `${process.env.REACT_APP_API_URL}/api/auth/jwt/create/`, # proxy
+      `${process.env.REACT_APP_API_URL}/api/auth/jwt/create/`,
       body,
       config
     );
@@ -134,8 +135,8 @@ export const signup =
 
     try {
       await axios.post(
-        `/api/auth/users/`,
-        // `${process.env.REACT_APP_API_URL}/api/auth/users/`,
+        // `/api/auth/users/`,
+        `${process.env.REACT_APP_API_URL}/api/auth/users/`,
         body,
         config
       );
@@ -161,8 +162,8 @@ export const verify = (uid, token) => async (dispatch) => {
 
   try {
     await axios.post(
-      `/api/auth/users/activation/`,
-      // `${process.env.REACT_APP_API_URL}/api/auth/users/activation/`,
+      // `/api/auth/users/activation/`,
+      `${process.env.REACT_APP_API_URL}/api/auth/users/activation/`,
       body,
       config
     );
@@ -187,8 +188,8 @@ export const reset_password = (email) => async (dispatch) => {
 
   try {
     await axios.post(
-      `/api/auth/users/reset_password/`,
-      // `${process.env.REACT_APP_API_URL}/api/auth/users/reset_password/`,
+      // `/api/auth/users/reset_password/`,
+      `${process.env.REACT_APP_API_URL}/api/auth/users/reset_password/`,
       body,
       config
     );
@@ -215,8 +216,8 @@ export const reset_password_confirm =
 
     try {
       await axios.post(
-        `/api/auth/users/reset_password_confirm/`,
-        // `${process.env.REACT_APP_API_URL}/api/auth/users/reset_password_confirm/`,
+        // `/api/auth/users/reset_password_confirm/`,
+        `${process.env.REACT_APP_API_URL}/api/auth/users/reset_password_confirm/`,
         body,
         config
       );
