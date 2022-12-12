@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   HiOutlineEmojiHappy,
@@ -12,10 +12,14 @@ import axios from "axios";
 const TweetForm = () => {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
+  const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append("body", data.body);
-    if (data.image[0]){
+    if (data.image[0]) {
       for (const element of data.image) {
         formData.append("uploaded_images", element);
       }
@@ -29,16 +33,14 @@ const TweetForm = () => {
       },
     };
     const body = formData;
-    try {
-      axios.post(
+    await axios
+      .post(
         // `/api/upload-file/`,
         `${process.env.REACT_APP_API_URL}/api/upload-file/`,
         body,
         config
-      );
-    } catch (err) {
-      console.log(err);
-    };
+      )
+      .then(refreshPage);
   };
 
   return (
