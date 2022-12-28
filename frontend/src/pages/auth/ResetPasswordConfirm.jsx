@@ -27,8 +27,8 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
   };
 
   if (requestSent) {
-    // Redirect - это теперь Navigate 
-    return <Navigate to="/index" />
+    // Redirect - это теперь Navigate
+    return <Navigate to="/home" />;
   }
 
   return (
@@ -37,7 +37,7 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
         <h1 className="text-center text-2xl mb-4">Reset Password</h1>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="grid grid-cols-1 gap-2">
-          <label className="block">
+            <label className="block">
               <span className="text-white ml-1">New Password</span>
               <input
                 type="password"

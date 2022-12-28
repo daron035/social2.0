@@ -8,7 +8,14 @@ const RightBar = () => {
         <div className="w-[44px] pl-4">
           <HiOutlineSearch size={18} />
         </div>
-        <div className="m-3 items-center text-[#72767A]">search</div>
+        <form className="m-3">
+          <textarea
+            rows="1"
+            cols=""
+            placeholder="Search"
+            className="placeholder-gray-500 resize-none outline-none bg-transparent"
+          ></textarea>
+        </form>
       </div>
       <div className="bg-[#212327] rounded-3xl text-lg">
         <div className="text-center text-white py-2 font-bold">

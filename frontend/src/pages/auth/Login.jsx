@@ -23,8 +23,8 @@ const Login = ({ login, isAuthenticated }) => {
   // Is the user authenticated?
   // Redirect the, to the home page
   if (isAuthenticated) {
-    // Redirect - это теперь Navigate 
-    return <Navigate to="/index" />
+    // Redirect - это теперь Navigate
+    return <Navigate to="/home" />;
   }
 
   return (

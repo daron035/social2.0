@@ -22,18 +22,18 @@ const Signup = ({ signup, isAuthenticated }) => {
     e.preventDefault();
     if (password === re_password) {
       signup(email, username, password, re_password);
-      setAccountCreated(true)
+      setAccountCreated(true);
     }
   };
 
   // Is the user authenticated?
   // Redirect the, to the home page
   if (isAuthenticated) {
-    // Redirect - это теперь Navigate 
-    return <Navigate to="/index" />
+    // Redirect - это теперь Navigate
+    return <Navigate to="/home" />;
   }
   if (accountCreated) {
-    return <Navigate to="/login" />
+    return <Navigate to="/login" />;
   }
 
   return (

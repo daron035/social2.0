@@ -13,7 +13,7 @@ const Feed = (props) => {
   }, []);
 
   let getPosts = async () => {
-    axios
+    await axios
       .get("http://127.0.0.1:8000/api/posts/")
       .then((response) => {
         const allPosts = response.data;
@@ -23,15 +23,17 @@ const Feed = (props) => {
   };
 
   return (
-    <div className="flex-none text-white border-l border-r border-gray-700 h-full w-[600px]">
+    <div className="relative flex-none text-white border-l border-r border-gray-700 h-full w-[600px]">
       <FeedHeader />
       <TweetForm />
       {posts.map((item) => (
         <TweetPost
           idPost={item.id}
+          username={item.user.username}
           body={item.body}
           imageUrls={item.images}
           callback={props.callback}
+          time={item.hours_since_joined}
         />
       ))}
       <TweetPost image={lg2} />

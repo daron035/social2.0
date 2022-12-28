@@ -7,11 +7,21 @@ import axios from "axios";
 import ViewPage from "./Modal/ViewPage";
 import TweetPostIcons from "./TweetPostIcons";
 
-const TweetPost = ({ idPost, body }) => {
+const TweetPost = ({ idPost, username, body, time, props }) => {
+  // console.log(d);
+  // console.log(props.time);
+  console.log(time);
   const [viewModal, setModal] = useState(false);
 
+  // Открытие модального окна <ViewPage viewModal={viewModal} ... />
+  let id;
+  function smap(item) {
+    setModal(true);
+    id = item.id;
+  }
+
+  // Открытие модального окна
   function callbackCloseModal(a) {
-    console.log(a)
     setModal(false);
   }
 
@@ -24,20 +34,14 @@ const TweetPost = ({ idPost, body }) => {
   let getImages = async (pk) => {
     await axios
       // .get(`http://127.0.0.1:8000/api/post-images/${pk}`)
-      // .get(`/api/post-images/${pk}`)
-      .get(`${process.env.REACT_APP_API_URL}/api/post-images/${pk}`)
+      .get(`/api/post-images/${pk}`)
+      // .get(`${process.env.REACT_APP_API_URL}/api/post-images/${pk}`)
       .then((response) => {
         const image = response.data;
         setImages(image);
       })
       .catch((err) => console.log(err));
   };
-
-  let id;
-  function smap(item) {
-    setModal(true);
-    id = item.id;
-  }
 
   return (
     <div className="relative border-b border-gray-700">
@@ -53,12 +57,11 @@ const TweetPost = ({ idPost, body }) => {
         </div>
         <div className="flex-col w-full">
           <div className="flex ">
-            <div className="min-h-[20px]">{body}</div>
-            <div className="ml-1">@nickname</div>
+            <div className="min-h-[20px]">{username}</div>
             <div className="mx-1"> & </div>
-            <div className="my-auto text-sm text-gray-400">14 hours</div>
+            <div className="my-auto text-sm text-gray-400">{time} hours</div>
           </div>
-          <div>Description</div>
+          <div>{body}</div>
           <div className="my-3 grid grid-cols-2">
             {images.map((item) => (
               <img

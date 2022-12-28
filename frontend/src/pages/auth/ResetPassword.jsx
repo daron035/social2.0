@@ -23,8 +23,8 @@ const ResetPassword = ({ reset_password }) => {
   };
 
   if (requestSent) {
-    // Redirect - это теперь Navigate 
-    return <Navigate to="/index" />
+    // Redirect - это теперь Navigate
+    return <Navigate to="/home" />;
   }
 
   return (

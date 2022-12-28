@@ -1,6 +1,9 @@
 from rest_framework import serializers
+from django.utils.timezone import now
+
 
 from .models import Images, Posts
+from user.serializers import UserSerializer
 
 
 class ImagesSerializer(serializers.ModelSerializer):
@@ -10,6 +13,7 @@ class ImagesSerializer(serializers.ModelSerializer):
 
 
 class PostsSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
     images = ImagesSerializer(many=True, read_only=True)
     uploaded_images = serializers.ListField(
         required=False,
@@ -18,10 +22,20 @@ class PostsSerializer(serializers.ModelSerializer):
         ),
         write_only=True,
     )
+    hours_since_joined = serializers.SerializerMethodField()
 
     class Meta:
         model = Posts
-        fields = ("id", "body", "image", "created_at", "images", "uploaded_images")
+        fields = (
+            "id",
+            "user",
+            "body",
+            "created_at",
+            "hours_since_joined",
+            "image",
+            "images",
+            "uploaded_images",
+        )
 
     def create(self, validated_data):
         """Upload multiple image from 'uploaded_images' post request
@@ -35,3 +49,7 @@ class PostsSerializer(serializers.ModelSerializer):
         else:
             post = Posts.objects.create(user=user, **validated_data)
         return post
+
+    def get_hours_since_joined(self, obj):
+        """timedelta Objects¶"""
+        return ((now() - obj.created_at).seconds) // 3600

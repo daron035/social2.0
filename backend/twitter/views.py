@@ -15,9 +15,6 @@ class ImagesViewSet(generics.ListAPIView):
 
     def get_queryset(self):
         pk = self.kwargs.get("pk")
-        if not pk:
-            return Images.objects.all()
-
         return Images.objects.filter(post_id=pk)
 
 

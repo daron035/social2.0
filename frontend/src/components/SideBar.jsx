@@ -2,39 +2,48 @@ import React from "react";
 import logo from "../static/twitter-icon-svg.jpg";
 import styles from "../static/css/App.module.css";
 import SideBarLink from "./SideBarLink";
-import {
-  HiHome,
-  HiOutlineHashtag,
-  HiOutlineBell,
-  HiInbox,
-  HiOutlineBookmark,
-  HiOutlineClipboardList,
-  HiOutlineUser,
-  HiOutlineDotsCircleHorizontal,
-} from "react-icons/hi";
+import { HiOutlineHashtag, HiInbox, HiOutlineUser } from "react-icons/hi";
 import TweetButton from "../UI/button";
 import AccountView from "./AccountView";
-import ViewLogout from "./Modal/ViewLogout";
+import { NavLink, Link } from "react-router-dom";
 
 const SideBar = () => {
+  let activeClassName = "font-bold";
+
   return (
     <div className="border-gray-50">
       <div
         className="flex sm:flex flex-col items-center xl:items-start
     xl:w-[390px] p-2 h-screen"
       >
-        <div className={styles.hoverIcon}>
-          <img src={logo} alt="Logo" />
-        </div>
+        <Link to={`/home`}>
+          <div className={styles.hoverIcon}>
+            <img src={logo} alt="Logo" />
+          </div>
+        </Link>
+
         <div className="space-y-2.5 mt-4 mb-2.5 xl:ml-24">
-          <SideBarLink text="Home" Icon={HiHome} active />
-          <SideBarLink text="Explore" Icon={HiOutlineHashtag} />
-          <SideBarLink text="Notifications" Icon={HiOutlineBell} />
-          <SideBarLink text="Messages" Icon={HiInbox} />
-          <SideBarLink text="Bookmarks" Icon={HiOutlineBookmark} />
-          <SideBarLink text="Lists" Icon={HiOutlineClipboardList} />
-          <SideBarLink text="Profile" Icon={HiOutlineUser} />
-          <SideBarLink text="More" Icon={HiOutlineDotsCircleHorizontal} />
+          <NavLink
+            to={`/home`}
+            className={({ isActive }) => (isActive ? activeClassName : "")}
+          >
+            <SideBarLink text="Explore" Icon={HiOutlineHashtag} />
+          </NavLink>
+
+          <NavLink
+            to={`/messages`}
+            className={({ isActive }) => (isActive ? activeClassName : "")}
+          >
+            <SideBarLink text="Messages" Icon={HiInbox} />
+          </NavLink>
+
+          <NavLink
+            to={`/profile`}
+            className={({ isActive }) => (isActive ? activeClassName : "")}
+          >
+            <SideBarLink text="Profile" Icon={HiOutlineUser} />
+          </NavLink>
+
           <TweetButton>Tweet</TweetButton>
         </div>
         <AccountView />

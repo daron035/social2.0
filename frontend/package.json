@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8000",
+  "proxy": "http://127.0.0.1:8000/",
   "secure": false,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -10,7 +10,7 @@
     "@heroicons/react": "^2.0.13",
     "@hookform/resolvers": "^2.9.10",
     "@mui/lab": "^5.0.0-alpha.108",
-    "@mui/material": "^5.10.14",
+    "@mui/material": "^5.11.0",
     "@pankod/refine-react-hook-form": "^3.33.2",
     "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.16.5",

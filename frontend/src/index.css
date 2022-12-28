@@ -6,7 +6,7 @@ body {
   @apply bg-black;
 }
 
-.on-hover {
+.onhover {
   @apply hover:bg-[#d9d9d9] hover:bg-opacity-25 rounded-full cursor-pointer transition duration-200 px-2.5;
 }
 
