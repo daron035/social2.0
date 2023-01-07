@@ -36,7 +36,7 @@ const Feed = (props) => {
           time={item.hours_since_joined}
         />
       ))}
-      <TweetPost image={lg2} />
+      <TweetPost image={lg2} username="test" body="test" />
     </div>
   );
 };

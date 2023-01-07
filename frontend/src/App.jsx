@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import Feed from "./components/Feed";
 import "./index.css";
 import Layout from "./hocs/Layout";
-import Profile from "./pages/Profile";
 import Messages from "./components/Messages/Messages";
 import Contacts from "./components/Messages/Contacts";
 import Conversation from "./pages/Conversation";
@@ -12,6 +11,8 @@ import Signup from "./pages/auth/Signup";
 import ResetPassword from "./pages/auth/ResetPassword";
 import ResetPasswordConfirm from "./pages/auth/ResetPasswordConfirm";
 import Activate from "./pages/auth/Activate";
+import FriendsList from "./components/FriendsList";
+import Profile from "./components/Profile";
 
 // другая реализация в index router tutorial.jsx (без App.jsx)
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />}>
             <Route path="home" element={<Feed />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="friends-list" element={<FriendsList />} />
           </Route>
 
           <Route path="/messages" element={<Conversation />}>

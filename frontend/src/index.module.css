@@ -15,5 +15,5 @@ body {
 }
 
 .ony {
-  @apply w-1/2 flex h-full justify-center items-center hover:bg-[#d9d9d9] hover:bg-opacity-25 cursor-pointer;
+  @apply w-full flex h-full justify-center items-center hover:bg-[#d9d9d9] hover:bg-opacity-25 cursor-pointer;
 }

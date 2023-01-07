@@ -11,5 +11,5 @@ router.register(r"posts", PostsViewSet)
 urlpatterns = [
     path("", include(router.urls)),
     path("post-images/<int:pk>/", ImagesViewSet.as_view()),
-    path("upload-file/", PostCreate.as_view(), name='upload_file'),
+    path("upload-file/", PostCreate.as_view(), name="upload_file"),
 ]

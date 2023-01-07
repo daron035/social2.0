@@ -1,6 +1,6 @@
 import React from "react";
-import { Avatar } from "@mui/material";
 import { Outlet } from "react-router-dom";
+import Room from "./Room";
 
 const Contacts = () => {
   return (
@@ -20,15 +20,7 @@ const Contacts = () => {
               ></textarea>
             </form>
           </div>
-        </div>
-        <div className="p-4">
-          <div className="flex">
-            <Avatar
-              sx={{ width: 48, height: 48 }}
-              style={{ marginRight: "1rem" }}
-            />
-            <div>Username</div>
-          </div>
+          <Room />
         </div>
       </div>
       <Outlet />

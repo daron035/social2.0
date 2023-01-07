@@ -44,6 +44,13 @@ const SideBar = () => {
             <SideBarLink text="Profile" Icon={HiOutlineUser} />
           </NavLink>
 
+          <NavLink
+            to={`/friends-list`}
+            className={({ isActive }) => (isActive ? activeClassName : "")}
+          >
+            <SideBarLink text="Friends" Icon={HiOutlineUser} />
+          </NavLink>
+
           <TweetButton>Tweet</TweetButton>
         </div>
         <AccountView />

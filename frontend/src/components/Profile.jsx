@@ -1,16 +1,8 @@
 import React from "react";
 import { Avatar } from "@mui/material";
-import { Outlet } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
-// import styles from "../static/css/index.css";
 import styles from "../index.module.css";
-import FeedHeader from "../components/FeedHeader";
-import RightBar from "../components/RightBar";
-import SideBar from "../components/SideBar";
-import TweetForm from "../components/TweetForm";
-import TweetPost from "../components/TweetPost";
 
-// <div className="w-14">HiArrowLeftback</div>
 const Profile = () => {
   return (
     <div className="flex-none text-white border-l border-r border-gray-700 h-full w-[600px]">

@@ -8,9 +8,6 @@ import ViewPage from "./Modal/ViewPage";
 import TweetPostIcons from "./TweetPostIcons";
 
 const TweetPost = ({ idPost, username, body, time, props }) => {
-  // console.log(d);
-  // console.log(props.time);
-  console.log(time);
   const [viewModal, setModal] = useState(false);
 
   // Открытие модального окна <ViewPage viewModal={viewModal} ... />

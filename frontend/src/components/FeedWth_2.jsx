@@ -4,9 +4,8 @@ import img from "../static/twitter-icon-svg.jpg";
 const FeedWth = () => {
   function handleSubmit(e) {
     e.preventDefault();
-    // data = new FormData()
-    console.log(data);
   }
+
   const [data, setData] = useState("jfsdk");
 
   return (

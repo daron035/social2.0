@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.utils.timezone import now
 
 
-from .models import Images, Posts
+from .models import Images, Posts, Profile
 from user.serializers import UserSerializer
 
 

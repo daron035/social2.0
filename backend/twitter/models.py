@@ -10,7 +10,7 @@ class Profile(models.Model):
         "self", related_name="follows_by", symmetrical=False, blank=True
     )
     friends = models.ManyToManyField(
-        "self", related_name="friends_by", symmetrical=True, blank=True
+        "self", related_name="friends_by", symmetrical=False, blank=True
     )
     timestamp = models.DateTimeField(auto_now=True)
 
