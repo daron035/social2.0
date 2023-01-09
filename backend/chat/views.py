@@ -12,14 +12,9 @@ from twitter.models import Profile
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = (IsAuthenticatedOrReadOnly,)
 
     def list(self, request, *args, **kwargs):
-        # print("\n\n", self.request.user.id, "\n\n")
-        queryset = Profile.objects.filter(
-            user_id=request.user.id
-        )  # user_id = 4 kamil249@mail.re
-
+        queryset = Profile.objects.filter(user_id=request.user.id)
         serializer = ProfileSerializer(queryset, many=True)
+        print(serializer.data)
         return Response(serializer.data)

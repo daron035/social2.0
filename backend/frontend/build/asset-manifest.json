@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cc7e04ce.css",
+    "main.js": "/static/js/main.509c253c.js",
+    "static/media/2.jpg": "/static/media/2.a5959a64ddad1d97f162.jpg",
+    "static/media/twitter-icon-svg.jpg": "/static/media/twitter-icon-svg.1fb903b331887c7215d3.jpg",
+    "index.html": "/index.html",
+    "main.cc7e04ce.css.map": "/static/css/main.cc7e04ce.css.map",
+    "main.509c253c.js.map": "/static/js/main.509c253c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cc7e04ce.css",
+    "static/js/main.509c253c.js"
+  ]
+}

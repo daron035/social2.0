@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Feed from "./components/Feed";
 import "./index.css";
@@ -18,7 +19,7 @@ import Profile from "./components/Profile";
 function App() {
   return (
     <Layout>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/" element={<Home />}>
             <Route path="home" element={<Feed />} />
@@ -41,7 +42,7 @@ function App() {
             element={<ResetPasswordConfirm />}
           />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </Layout>
   );
 }

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-black;
+}
+
+.onhover {
+  @apply hover:bg-[#d9d9d9] hover:bg-opacity-25 rounded-full cursor-pointer transition duration-200 px-2.5;
+}
+
+.on-hover-sm {
+  @apply hover:bg-blue-200 hover:bg-opacity-50 rounded-full cursor-pointer transition duration-200;
+}
+
+.ony {
+  @apply hover:bg-blue-200 hover:bg-opacity-50 rounded-full cursor-pointer transition duration-200;
+}

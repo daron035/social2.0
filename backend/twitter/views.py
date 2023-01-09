@@ -1,3 +1,11 @@
+from django.http import request
+from django.shortcuts import render
+
+
+def index(request):
+    return render(request, "index.html")
+
+
 from rest_framework import generics, viewsets
 
 from .models import Posts, Images

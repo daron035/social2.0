@@ -30,6 +30,7 @@ const Profile = () => {
       // .get(`/api/profiles/3/`)
       // .get(`${process.env.REACT_APP_API_URL}/api/post-images/${pk}`)
       .then((response) => {
+        console.log(response.data[0]);
         setContacts(response.data[0]);
       })
       .catch((err) => console.log(err));
