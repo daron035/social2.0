@@ -9,7 +9,11 @@ const Room = () => {
           sx={{ width: 48, height: 48 }}
           style={{ marginRight: "1rem" }}
         />
-        <div>friend's private chat room name</div>
+        <div className="text-[#FF0000]">
+          Это <span className="line-through">бесполезная</span> демонстрационная
+          страница
+          <p>Пожалуйста, по ссылке "Сonversation"</p>
+        </div>
       </div>
     </div>
   );

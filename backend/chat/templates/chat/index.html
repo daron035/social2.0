@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'bulma/css/bulma.css' %}">
+  <title>Dwitter</title>
+
+</head>
+
+<body>
+  <section class="hero is-small has-background-warning mb-6">
+    <!-- Hero head: will stick at the top -->
+    <div class="hero-body my-1">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item">
+              <h1 class="title is-size-1">Conversation</h1>
+            </a>
+          </div>
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              <a class="navbar-item" href="#">
+                <span class="subtitle is-4">Home</span>
+              </a>
+              <div class="navbar-item">
+                <span class="subtitle is-6">{{user}}</span>
+              </div>
+              <p class="subtitle is-size-6 my-auto ml-3">
+              </p>
+              <!-- <span class="navbar-item"> -->
+              <div class="block">
+                <figure class="image is-96x96">
+                  <a class="#">
+                    <img class="is-rounded" style="margin-top: 10px; margin-left: 10px;" src="#">
+                  </a>
+                </figure>
+              </div>
+            </div>
+      </nav>
+    </div>
+  </section>
+
+  <div class='container'>
+    <div class="columns">
+      <div class="column is-one-quarter">
+        {% for f in profile.all %}
+        <div class="block">
+          <div class="card mt-3">
+            <a href="#">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-96x96">
+                    <img src="#" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media-content">
+                    <p class="title is-4">
+                      {{ f.user.username }}
+                    </p>
+                    <p class="subtitle is-6">
+                      {{ f.user.email }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="column is-6 is-offset-3">
+        <div class="box">
+          <div id="chat-messages" style="max-height: 300px; overflow-y: scroll;">{% for m in messages %}<b>{{
+              m.user.username }}</b>: {{ m.content }}<br>{% endfor %}</div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="Message" id="chat-message-input">
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <a class="button is-info" id="chat-message-submit">Submit</a>
+          </div>
+        </div>
+
+        <small class="has-text-grey-light">Your username: {{ user.username }}</small>
+      </div>
+    </div>
+
+    <script src="{% static 'chat/js/script.js' %}">
+    </script>
+    <!-- <script> -->
+    <!--   alert("ff"); -->
+    <!-- </script> -->
+</body>
+
+</html>
