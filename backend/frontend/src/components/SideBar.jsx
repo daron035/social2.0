@@ -87,7 +87,6 @@ const SideBar = () => {
           <NavLink
             to={`/messages`}
             className={({ isActive }) => (isActive ? activeClassName : "")}
-            onClick={to_conversation}
           >
             <SideBarLink text="Messages" Icon={HiInbox} />
           </NavLink>

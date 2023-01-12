@@ -1,12 +1,11 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from rest_framework import viewsets
+from rest_framework import status, viewsets
 from rest_framework.response import Response
-from django.conf import settings
-from django.contrib.auth import login, get_user_model, logout
+from django.contrib.auth import login, get_user_model
 
 from .serializers import ProfileSerializer
 from twitter.models import Profile
-import json
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -16,7 +15,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         queryset = Profile.objects.filter(user_id=request.user.id)
         serializer = ProfileSerializer(queryset, many=True)
-        print(serializer.data)
         return Response(serializer.data)
 
 
@@ -24,9 +22,10 @@ def to_conversation(request):
     """Force authenticate with 'username' field from axios.get params
     cred: email='kamil249@mail.ru' password='nbuksddnvi43434'"""
     username = request.GET.copy()["user"]
-    a = request.GET.copy()
-    print(a)
-    user = get_user_model().objects.get(username=username)
+    try:
+        user = get_user_model().objects.get(username=username)
+    except:
+        return HttpResponse(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     user.backend = "django.contrib.auth.backends.ModelBackend"
     login(request, user)
     return redirect("index")
