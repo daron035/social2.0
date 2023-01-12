@@ -23,7 +23,7 @@ class Messages(models.Model):
     room = models.ForeignKey(
         PrivateChatRoom, on_delete=models.CASCADE, related_name="messages"
     )
-    body = models.TextField()
+    content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     class Meta:

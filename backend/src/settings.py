@@ -35,6 +35,7 @@ AUTH_USER_MODEL = "user.User"
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # 3rd party
+    "channels",
     "rest_framework",
     "corsheaders",
     "rest_framework.authtoken",
@@ -90,6 +92,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "src.wsgi.application"
 
+ASGI_APPLICATION = "src.asgi.application"
+
+CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
